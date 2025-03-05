@@ -46,7 +46,7 @@ try{
       res.json({
           success: true,
           message: "share file Api",
-          data:`/files/download/${id}`
+          data:`/files/download/${req.body.fileId}`
       })
 }catch(err){
     next(err)
