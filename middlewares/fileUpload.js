@@ -1,3 +1,4 @@
+const fs = require("fs");
 const multer = require("multer")
 const path =require("node:path")
 const {v4:uuidv4} = require("uuid")
@@ -16,4 +17,4 @@ const storage = multer.diskStorage({
     storage:storage
  })
  module.exports=upload;
- const singleFileUploader = upload.single("profilePicture")
+ //const singleFileUploader = upload.single("profilePicture")

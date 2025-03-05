@@ -65,6 +65,7 @@ const downloadFile =async (req, res, next) => {
        console.log("Attempting to download:", filePath);
        // Check if file exists before sending
     if (!fs.existsSync(filePath)) {
+        console.log("File does not exist at:", filePath);
         res.status(404).json({ success: false, message: "File not found" });
         return;
       }
