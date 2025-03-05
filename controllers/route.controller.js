@@ -1,5 +1,6 @@
 const FileModel = require("../models/route.modules")
-
+const fs = require("fs");
+const path = require("path");
 const uploadFile = async(req, res, next) => {
     try{
         const fileDetails={
@@ -46,7 +47,7 @@ try{
       res.json({
           success: true,
           message: "share file Api",
-          data:`/files/download/${req.body.fileId}`
+          data:`/files/download/${fileDetails._id}`
       })
 }catch(err){
     next(err)
@@ -57,10 +58,11 @@ const downloadFile =async (req, res, next) => {
         const fileDetails = await FileModel.findById(req.params.id)
        console.log(fileDetails)
        if(!fileDetails){
-        res.end("Invalid url");
+        return res.status(400).json({ success: false, message: "Invalid URL" });
         return
        }
        const filePath = fileDetails.path;
+       console.log("Attempting to download:", filePath);
        // Check if file exists before sending
     if (!fs.existsSync(filePath)) {
         res.status(404).json({ success: false, message: "File not found" });
