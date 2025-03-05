@@ -60,7 +60,13 @@ const downloadFile =async (req, res, next) => {
         res.end("Invalid url");
         return
        }
-       res.download(fileDetails.path,fileDetails.originalName)
+       const filePath = fileDetails.path;
+       // Check if file exists before sending
+    if (!fs.existsSync(filePath)) {
+        res.status(404).json({ success: false, message: "File not found" });
+        return;
+      }
+       res.download(filePath,fileDetails.originalName)
      
 
     }catch(err){
