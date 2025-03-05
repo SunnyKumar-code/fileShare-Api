@@ -25,7 +25,7 @@ const app = express();
   */
 //db connect
 mongoose
-.connect("mongodb://127.0.0.1:27017/file_share_app")
+.connect("mongodb+srv://sk202542:OACI6BZkikMcZkx2@cluster0.wrevt.mongodb.net/")
 .then(()=>console.log("DB Connect Successfully"))
 .catch(err=>console.log("Error Connecting on DB ",err))
 
